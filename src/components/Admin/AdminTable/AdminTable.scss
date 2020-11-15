@@ -1,0 +1,33 @@
+.containers {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto; 
+    column-gap: 2rem;
+    row-gap: 2rem;
+    grid-template-areas:
+    'headers'
+    'users'
+    'all';
+
+    &__headers {
+        grid-area: headers;
+    };
+
+    &__user {
+        grid-area: users;
+    };
+    &__all{
+        grid-area: all;
+        display: grid;
+        grid-template-areas: 'author book';
+        row-gap: 1.5rem;
+        justify-items: center;
+        &__author {
+            grid-area: author;
+        };
+        &__book {
+            grid-area: book;
+        };
+    }
+
+}

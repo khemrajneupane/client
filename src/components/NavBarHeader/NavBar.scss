@@ -1,0 +1,73 @@
+/* Header here */
+.header {
+    height: 15vh;
+    display: grid;
+  
+    grid-template-rows: auto;
+    grid-template-areas: "headerImage search headerNav";
+    align-items: center;
+    background-color: 'linear-gradient(45deg, #01caf9 30%, #FF8E53 90%)';
+    margin-bottom: 2rem;
+    &__image {
+      grid-area: headerImage;
+      font-size: 2rem;
+     
+      img {
+         height:8vh;
+         width:60px;
+      }
+    }
+    &__search {
+        grid-area: search;
+        input {
+            height:5vh;
+            border: 5px solid black;
+            border-radius: 10px;
+        }
+    }
+    &__nav {
+      grid-area: headerNav;
+      justify-self: end;
+  
+      &__list {
+        display: grid;
+        column-gap: 1.5rem;
+        grid-template-areas: "A B C D E F .";
+        justify-items: right;
+        list-style-type: none;
+      }
+      &__nav__list__list1 {
+        grid-area: A;
+      }
+      &__nav__list__list2 {
+        grid-area: B;
+      }
+      &__nav__list__list3 {
+        grid-area: C;
+      }
+      &__nav__list__list4 {
+        grid-area: D;
+      }
+      &__nav__list__list5 {
+        grid-area: E;
+      }
+      &__nav__list__list6 {
+        grid-area: F;
+      }
+      &__nav__list__hide {
+        visibility: hidden;
+      }
+      a {
+        text-decoration: none;
+        font-size: 1rem;
+        color: whitesmoke;
+      }
+      a:hover {
+        color: yellowgreen
+      };;
+  
+    }
+  }
+  .hide {
+    visibility: hidden;
+  }

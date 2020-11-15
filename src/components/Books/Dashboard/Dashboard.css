@@ -1,0 +1,13 @@
+.allCountries {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+      grid-template-areas: 'card';
+}
+
+.allCountries__card {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: card;
+}
+/*# sourceMappingURL=Dashboard.css.map */

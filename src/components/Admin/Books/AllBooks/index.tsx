@@ -1,0 +1,43 @@
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+
+import useBooks from '../../../../hook/useBooks'
+import bookRemove from '../../../../redux/actions/BookActions/removeBookAction'
+import UpdateBook from '../UpdateBook'
+
+const CompleteTransactionInfo = () => {
+  const [keyword] = useState('')
+  const books = useBooks(keyword)
+  const dispatch = useDispatch()
+  return (
+    <table className="table table-hover table-dark">
+      <thead>
+        <tr>
+          <th scope="col">Title</th>
+          <th scope="col">Image</th>
+          <th scope="col">Category</th>
+          <th scope="col">Puhlisher</th>
+          <th scope="col">ISBN</th>
+          <th scope="col">Availability</th>
+          <th scope="col">Author</th>
+        </tr>
+      </thead>
+      <tbody>
+        {books.map(book => 
+          <tr key = {book.id}>
+            <th>{book.title}</th>
+            <td><img style={{height:`4rem`}} src={book.image ? book.image : './images/romeo.jpg'} alt={`${book.isbn}`}/></td>
+            <td>{book.category}</td>
+            <td>{book.publisher}</td>
+            <td>{book.isbn}</td>
+            <td>{book.isAvailable ? `available: ${book.total} copies`: <UpdateBook id={book.id} />}</td>
+            <td>  {book.author.map(author =>`${author.firstName} ${author.lastName}`)}</td>
+            <td><button onClick={() => bookRemove(book, dispatch)}>Remove</button></td>
+          </tr>
+        )}
+      </tbody>
+    </table>
+  )
+}
+
+export default CompleteTransactionInfo

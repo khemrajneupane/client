@@ -1,0 +1,20 @@
+.list-main {
+    display: grid;
+    grid-template-areas: '. first second .';
+    background-color: whitesmoke;
+    column-gap: 1rem;
+    
+    &__sublist1 {
+        grid-area: first;
+        grid-column-start: 2;
+        max-width: 40rem;
+        background-color: rgba(166, 166, 173, .09);
+        border-radius: 7%;
+    }
+    &__sublist2 {
+        grid-area: second;
+        background-color: rgba(166, 166, 173, .09);
+        border-radius: 7%;
+
+    }
+}

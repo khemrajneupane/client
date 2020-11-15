@@ -1,0 +1,27 @@
+.list-main {
+  display: -ms-grid;
+  display: grid;
+      grid-template-areas: '. first second .';
+  background-color: whitesmoke;
+  -webkit-column-gap: 1rem;
+          column-gap: 1rem;
+}
+
+.list-main__sublist1 {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: first;
+  grid-column-start: 2;
+  max-width: 40rem;
+  background-color: rgba(166, 166, 173, 0.09);
+  border-radius: 7%;
+}
+
+.list-main__sublist2 {
+  -ms-grid-row: 1;
+  -ms-grid-column: 3;
+  grid-area: second;
+  background-color: rgba(166, 166, 173, 0.09);
+  border-radius: 7%;
+}
+/*# sourceMappingURL=OneAuthor.css.map */

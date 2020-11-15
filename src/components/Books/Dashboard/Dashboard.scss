@@ -1,0 +1,7 @@
+.allCountries {
+    display:flex;
+    grid-template-areas: 'card';
+    &__card {
+        grid-area: card;
+    }
+}

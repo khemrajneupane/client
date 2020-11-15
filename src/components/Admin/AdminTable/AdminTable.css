@@ -1,0 +1,48 @@
+.containers {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto;
+      grid-template-columns: auto;
+  -ms-grid-rows: auto;
+      grid-template-rows: auto;
+  -webkit-column-gap: 2rem;
+          column-gap: 2rem;
+  row-gap: 2rem;
+      grid-template-areas: 'headers' 'users' 'all';
+}
+
+.containers__headers {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: headers;
+}
+
+.containers__user {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  grid-area: users;
+}
+
+.containers__all {
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
+  grid-area: all;
+  display: -ms-grid;
+  display: grid;
+      grid-template-areas: 'author book';
+  row-gap: 1.5rem;
+  justify-items: center;
+}
+
+.containers__all__author {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: author;
+}
+
+.containers__all__book {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: book;
+}
+/*# sourceMappingURL=AdminTable.css.map */
