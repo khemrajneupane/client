@@ -54,7 +54,11 @@ const useStyle = makeStyles({
     height: 100,
   },
 })
-
+const makeInitials = (firstName: any, lastName: any) => {
+  const joinNames = `${firstName} ${lastName}`
+  const matcher = joinNames.match(/\b(\w)/g)?.join('')
+  return matcher
+}
 const BookList = ({ book }: BookListType) => {
   const classes = useStyles()
   const classe = useStyle()

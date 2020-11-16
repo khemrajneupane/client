@@ -13,10 +13,10 @@ function fetchUsers(users: Users[]): UserFetchActions {
   }
 }
 const userList = async (dispatch: Dispatch<any>) => {
- try{
+  try {
     const allUsers = await userServices.getAll()
     dispatch(fetchUsers(allUsers))
-  }catch(error){
+  } catch (error) {
     console.log(error)
   }
 }

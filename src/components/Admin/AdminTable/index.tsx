@@ -6,10 +6,12 @@ import UserListTable from '../../Users/UserList'
 
 import './AdminTable.css'
 import CompleteTransactionInfo from '../Books/AllBooks'
+import useBooks from '../../../hook/useBooks'
 import MyDrawer from '../../pages/Drawer'
 
-const AdminTable = () =>{ 
+const AdminTable = () => {
   const [keyword, setKeyword] = useState('')
+  const books = useBooks(keyword)
   const handleSearchChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>): void => {
       setKeyword(e.target.value)
@@ -19,7 +21,7 @@ const AdminTable = () =>{
   return (
     <div className="containers">
       <div className="containers__headers">
-        <MyDrawer keyword={keyword} handleSearchChange={handleSearchChange}/>
+        <MyDrawer keyword={keyword} handleSearchChange={handleSearchChange} />
       </div>
       <div className="containers__author">
         <CompleteTransactionInfo />
@@ -36,6 +38,7 @@ const AdminTable = () =>{
         <UserListTable />
       </div>
     </div>
-  )}
+  )
+}
 
 export default AdminTable

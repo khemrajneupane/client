@@ -11,7 +11,6 @@ import './NavBar.css'
 import { useState } from 'react'
 import useUser from '../../hook/useUser'
 
-
 const ConstantHeader = () => {
   const dispatch = useDispatch()
   const [id, username, checkAdmin] = useUser()
@@ -35,34 +34,41 @@ const ConstantHeader = () => {
               <Link to="/dashboard">Dashboard</Link>
             </li>
             <li className="header__nav__list__list3">
-               {checkAdmin?.isAdmin && <>
-               <Link to="/admin">Admin {username}</Link>
-               </>}
+              {checkAdmin?.isAdmin && (
+                <>
+                  <Link to="/admin">Admin {username}</Link>
+                </>
+              )}
             </li>
             <li className="header__nav__list__list3">
-               {!checkAdmin?.isAdmin && <>
-               <span style={{ fontSize: `1.5rem` }}><sup>Welcome </sup> </span><Link to="/admin">{` ${username}`}</Link>
-               </>}
+              {!checkAdmin?.isAdmin && (
+                <>
+                  <span style={{ fontSize: `1.5rem` }}>
+                    <sup>Welcome </sup>{' '}
+                  </span>
+                  <Link to="/admin">{` ${username}`}</Link>
+                </>
+              )}
             </li>
 
-            <li className={id?"hide":"header__nav__list__list4"}>
+            <li className={id ? 'hide' : 'header__nav__list__list4'}>
               <Link to="/login">Login</Link>
             </li>
-            <li className={id?"hide":"header__nav__list__list5"}>
+            <li className={id ? 'hide' : 'header__nav__list__list5'}>
               <Link to="/signup">Signup</Link>
             </li>
-            <li className={!id?"hide":"header__nav__list__list6"} >
-            <button className="btn btn-danger"  onClick={()=>logOut(dispatch)}>
-                <Link to ="/login" >logout</Link>
-            </button>
+            <li className={!id ? 'hide' : 'header__nav__list__list6'}>
+              <button
+                className="btn btn-danger"
+                onClick={() => logOut(dispatch)}
+              >
+                <Link to="/login">logout</Link>
+              </button>
             </li>
           </ul>
         </nav>
       </header>
-      
     </div>
   )
 }
 export default ConstantHeader
-
-

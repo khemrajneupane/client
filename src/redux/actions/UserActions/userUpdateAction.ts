@@ -10,26 +10,29 @@ function updateUser(users: Users): UserUpdateActions {
   return {
     type: USERS_UPDATE,
     payload: {
-        users
+      users,
     },
   }
 }
 
-const userUpdate = async (users: Users, id: UserId, dispatch: Dispatch<any>) => {
+const userUpdate = async (
+  users: Users,
+  id: UserId,
+  dispatch: Dispatch<any>
+) => {
   try {
-    const loggedUserJSON = window.localStorage.getItem("loggedUser")
+    const loggedUserJSON = window.localStorage.getItem('loggedUser')
     let user = null
-    if(loggedUserJSON){
+    if (loggedUserJSON) {
       user = JSON.parse(loggedUserJSON)
     }
-    const updateThisUser = await userServices.update( users, id, user.token)  
+    const updateThisUser = await userServices.update(users, id, user.token)
 
     dispatch(updateUser(updateThisUser))
     userList(dispatch)
     bookList(dispatch)
-    
   } catch (error) {
-    if(error.name === 'TypeError'){
+    if (error.name === 'TypeError') {
       alert('You must be logged in to perform this action')
     }
   }

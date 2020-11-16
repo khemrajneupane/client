@@ -228,35 +228,42 @@ const MyDrawer = ({ keyword, handleSearchChange }: SearchType) => {
                 ))}
               </select>
             </IconButton>
-            <Tooltip title="home" arrow placement='top-end'>
-            <IconButton>
-              <Link to="/"> <HomeIcon /></Link>
-            </IconButton>
+            <Tooltip title="home" arrow placement="top-end">
+              <IconButton>
+                <Link to="/">
+                  {' '}
+                  <HomeIcon />
+                </Link>
+              </IconButton>
             </Tooltip>
-            <Tooltip title ="dashboard" arrow>
-            <IconButton>
-              <Link to="/dashboard"><DashboardIcon /></Link>
-            </IconButton>
+            <Tooltip title="dashboard" arrow>
+              <IconButton>
+                <Link to="/dashboard">
+                  <DashboardIcon />
+                </Link>
+              </IconButton>
             </Tooltip>
             <IconButton>
               {checkAdmin?.isAdmin && (
-                <Link to="/admin">{` ${(username).toUpperCase()} Admin`}</Link>
+                <Link to="/admin">{` ${username.toUpperCase()} Admin`}</Link>
               )}
             </IconButton>
-            <Tooltip title ="profile" arrow>
-            <IconButton>
-              {id && (
-                <ListItem>
-                  {!checkAdmin?.isAdmin && (
-                    <>
-                      <Link
-                        to={`/profile/:${id}`}
-                      >{` ${(username).toUpperCase()}! Loans: ${loansTotal.length}`}</Link>
-                    </>
-                  )}
-                </ListItem>
-              )}
-            </IconButton>
+            <Tooltip title="profile" arrow>
+              <IconButton>
+                {id && (
+                  <ListItem>
+                    {!checkAdmin?.isAdmin && (
+                      <>
+                        <Link
+                          to={`/profile/:${id}`}
+                        >{` ${username.toUpperCase()}! Loans: ${
+                            loansTotal.length
+                          }`}</Link>
+                      </>
+                    )}
+                  </ListItem>
+                )}
+              </IconButton>
             </Tooltip>
           </List>
           {id && (

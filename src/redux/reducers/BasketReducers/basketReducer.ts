@@ -1,7 +1,12 @@
-import { ADD_TO_BASKET, BasketActions, BasketState, DELETE_FROM_BASKET } from '../../../types'
+import {
+  ADD_TO_BASKET,
+  BasketActions,
+  BasketState,
+  DELETE_FROM_BASKET,
+} from '../../../types'
 
 const basketReducer = (
-  state: BasketState = { myBasket: []},
+  state: BasketState = { myBasket: [] },
   action: BasketActions
 ): BasketState => {
   switch (action.type) {
@@ -11,10 +16,13 @@ const basketReducer = (
       return state
     }
     return { ...state, myBasket: [...state.myBasket, book] }
-    case DELETE_FROM_BASKET:
-    const remainingBooksInBasket = state.myBasket.filter((value) => value.id !== action.payload.book.id)
+  case DELETE_FROM_BASKET:
+    const remainingBooksInBasket = state.myBasket.filter(
+      (value) => value.id !== action.payload.book.id
+    )
     return {
-     ...state, myBasket: remainingBooksInBasket
+      ...state,
+      myBasket: remainingBooksInBasket,
     }
   default:
     return state

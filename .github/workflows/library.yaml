@@ -1,4 +1,4 @@
-name: deploying to Netlify
+name: Deploy to Netlify
 on:
   push:
     branches: [ main ]
@@ -29,7 +29,6 @@ jobs:
             restore-keys: |
               ${{ runner.os }}-install-
               ${{ runner.os }}-
-
       - name: Install node -modules
         run: yarn install --frozen-lockfile
 
@@ -50,5 +49,3 @@ jobs:
         env:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-       
- 

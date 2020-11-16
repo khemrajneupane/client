@@ -1,6 +1,6 @@
 import React from 'react'
 
-import clsx from "clsx"
+import clsx from 'clsx'
 import { useDispatch } from 'react-redux'
 import Button from '@material-ui/core/Button'
 import Dialog from '@material-ui/core/Dialog'
@@ -9,12 +9,23 @@ import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
 import MuiDialogTitle from '@material-ui/core/DialogTitle'
 import MuiDialogContent from '@material-ui/core/DialogContent'
-import { FilledInput, FormControl, FormHelperText, InputLabel } from '@material-ui/core';
-import { createStyles, makeStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles'
+import MuiDialogActions from '@material-ui/core/DialogActions'
+import {
+  FilledInput,
+  FormControl,
+  FormHelperText,
+  InputLabel,
+} from '@material-ui/core'
+import {
+  createStyles,
+  makeStyles,
+  Theme,
+  withStyles,
+  WithStyles,
+} from '@material-ui/core/styles'
 
 import useForm from '../../../../hook/useForm'
-import authorAdd from '../../../../redux/actions/AuthorAction/addAuthorAction';
-
+import authorAdd from '../../../../redux/actions/AuthorAction/addAuthorAction'
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -28,29 +39,29 @@ const styles = (theme: Theme) =>
       top: theme.spacing(1),
       color: theme.palette.grey[500],
     },
-  });
-const useStyles = makeStyles(theme => ({
+  })
+const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex",
-    flexWrap: "wrap"
+    display: 'flex',
+    flexWrap: 'wrap',
   },
   margin: {
-    margin: theme.spacing(1)
+    margin: theme.spacing(1),
   },
   withoutLabel: {
     marginTop: 10,
     height: 50,
-  
-    width: 200
+
+    width: 200,
   },
   textField: {
-    width: 200
+    width: 200,
   },
   fieldMargin: {
-    marginRight: 100
+    marginRight: 100,
   },
   marginCentered: {
-    margin: "0 auto"
+    margin: '0 auto',
   },
   rootButton: {
     background: 'linear-gradient(45deg, #706AF0 50%,  #768976 10%)',
@@ -60,56 +71,66 @@ const useStyles = makeStyles(theme => ({
     height: 48,
     padding: '0 30px',
     boxShadow: '0 3px 5px 2px rgba(209, 209, 204, .8)',
-     
   },
   labelButton: {
     textTransform: 'capitalize',
   },
-}));
+}))
 
 export interface DialogTitleProps extends WithStyles<typeof styles> {
-  id: string;
-  children: React.ReactNode;
-  onClose: () => void;
+  id: string
+  children: React.ReactNode
+  onClose: () => void
 }
 
 const DialogTitle = withStyles(styles)((props: DialogTitleProps) => {
-  const { children, classes, onClose, ...other } = props;
+  const { children, classes, onClose, ...other } = props
   return (
     <MuiDialogTitle disableTypography className={classes.root} {...other}>
       <Typography variant="h6">{children}</Typography>
       {onClose ? (
-        <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
+        <IconButton
+          aria-label="close"
+          className={classes.closeButton}
+          onClick={onClose}
+        >
           <CloseIcon />
         </IconButton>
       ) : null}
     </MuiDialogTitle>
-  );
-});
+  )
+})
 
 const DialogContent = withStyles((theme: Theme) => ({
   root: {
     padding: theme.spacing(2),
   },
-}))(MuiDialogContent);
+}))(MuiDialogContent)
+
+const DialogActions = withStyles((theme: Theme) => ({
+  root: {
+    margin: 0,
+    padding: theme.spacing(1),
+  },
+}))(MuiDialogActions)
 
 const CreateAuthor = () => {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false)
   const handleClickOpen = () => {
-    setOpen(true);
-  };
+    setOpen(true)
+  }
   const handleClose = () => {
-    setOpen(false);
-  };
+    setOpen(false)
+  }
   const initialState = {
     firstName: '',
     lastName: '',
     email: '',
-    dob: 0
+    dob: 0,
   }
   const { value, handleInputChange, setValue } = useForm(initialState)
   const dispatch = useDispatch()
-  const classes = useStyles();
+  const classes = useStyles()
 
   const handleSubmit = (event: any) => {
     event.preventDefault()
@@ -119,12 +140,20 @@ const CreateAuthor = () => {
 
   return (
     <div>
-      <Button className={clsx(classes.rootButton, classes.labelButton)} variant="contained"  onClick={handleClickOpen}>
+      <Button
+        className={clsx(classes.rootButton, classes.labelButton)}
+        variant="contained"
+        onClick={handleClickOpen}
+      >
         CREATE AUTHOR
       </Button>
-      <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
+      <Dialog
+        onClose={handleClose}
+        aria-labelledby="customized-dialog-title"
+        open={open}
+      >
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-         Fill up author info
+          Fill up author info
         </DialogTitle>
         <DialogContent dividers>
           <form onSubmit={handleSubmit}>
@@ -160,7 +189,7 @@ const CreateAuthor = () => {
                 <small>type last name</small>
               </FormHelperText>
             </FormControl>
-          
+
             <FormControl
               className={clsx(classes.margin, classes.textField)}
               variant="filled"
@@ -177,12 +206,11 @@ const CreateAuthor = () => {
                 <small>type email</small>
               </FormHelperText>
             </FormControl>
-        
+
             <FormControl
               className={clsx(classes.margin, classes.textField)}
               variant="filled"
             >
-           
               <FilledInput
                 id="filled-adornment-name"
                 type="date"
@@ -194,10 +222,8 @@ const CreateAuthor = () => {
                 <small>type birth year</small>
               </FormHelperText>
             </FormControl>
-         
-            <FormControl
-              variant="filled"
-            >
+
+            <FormControl variant="filled">
               <Button
                 className={clsx(classes.rootButton, classes.labelButton)}
                 id="signup"
@@ -205,15 +231,13 @@ const CreateAuthor = () => {
                 variant="contained"
                 color="primary"
               >
-              CREATE AUTHOR
+                CREATE AUTHOR
               </Button>
             </FormControl>
-       
           </form>
         </DialogContent>
-
       </Dialog>
     </div>
-  );
+  )
 }
 export default CreateAuthor

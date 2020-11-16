@@ -1,4 +1,4 @@
-import {  LoanRemoveActions, LoanState, LOAN_REMOVE } from '../../../types'
+import { LoanRemoveActions, LoanState, LOAN_REMOVE } from '../../../types'
 
 const loanRemoveReducer = (
   state: LoanState = { loans: [] },
@@ -6,9 +6,12 @@ const loanRemoveReducer = (
 ): LoanState => {
   switch (action.type) {
   case LOAN_REMOVE:
-    const remainingLoans = state.loans.filter((value) => value.id !== action.payload.loan.id)
+    const remainingLoans = state.loans.filter(
+      (value) => value.id !== action.payload.loan.id
+    )
     return {
-     ...state, loans: remainingLoans
+      ...state,
+      loans: remainingLoans,
     }
   default:
     return state

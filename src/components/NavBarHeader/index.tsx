@@ -2,12 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
-import {  SearchType } from '../../types'
+import { SearchType } from '../../types'
 import { logOut } from '../../redux/actions/LoginAction/logOutAction'
 
 import './NavBar.css'
 import useUser from '../../hook/useUser'
-
 
 const NavBarHeader = ({ keyword, handleSearchChange }: SearchType) => {
   const dispatch = useDispatch()
@@ -42,39 +41,44 @@ const NavBarHeader = ({ keyword, handleSearchChange }: SearchType) => {
               <Link to="/dashboard">Dashboard</Link>
             </li>
             <li className="header__nav__list__list3">
-               {checkAdmin?.isAdmin && <>
-               <span style={{ fontSize: `1.2rem` }}><sup>Admin </sup> </span><Link to="/admin">{username}</Link>
-               </>}
+              {checkAdmin?.isAdmin && (
+                <>
+                  <span style={{ fontSize: `1.2rem` }}>
+                    <sup>Admin </sup>{' '}
+                  </span>
+                  <Link to="/admin">{username}</Link>
+                </>
+              )}
             </li>
             <li className="header__nav__list__list3">
-               {!checkAdmin?.isAdmin && <>
-               <span style={{ fontSize: `1.5rem` }}><sup>Welcome </sup> </span><Link to="/">{` ${username}`}</Link>
-               </>}
+              {!checkAdmin?.isAdmin && (
+                <>
+                  <span style={{ fontSize: `1.5rem` }}>
+                    <sup>Welcome </sup>{' '}
+                  </span>
+                  <Link to="/">{` ${username}`}</Link>
+                </>
+              )}
             </li>
 
-            <li className={id?"hide":"header__nav__list__list4"}>
+            <li className={id ? 'hide' : 'header__nav__list__list4'}>
               <Link to="/login">Login</Link>
             </li>
-            <li className={id?"hide":"header__nav__list__list5"}>
+            <li className={id ? 'hide' : 'header__nav__list__list5'}>
               <Link to="/signup">Signup</Link>
             </li>
-            <li className={!id?"hide":"header__nav__list__list6"} >
-            <button className="btn btn-danger"  onClick={()=>logOut(dispatch)}>
-                <Link to ="/" >logout</Link>
-            </button>
+            <li className={!id ? 'hide' : 'header__nav__list__list6'}>
+              <button
+                className="btn btn-danger"
+                onClick={() => logOut(dispatch)}
+              >
+                <Link to="/">logout</Link>
+              </button>
             </li>
-            <li className={!id?"hide":"header__nav__list__list6"} >
-           
-            </li>
+            <li className={!id ? 'hide' : 'header__nav__list__list6'}></li>
           </ul>
         </nav>
-
       </header>
-      
     </div>
   )
 }
-
-
-
-

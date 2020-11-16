@@ -1,9 +1,12 @@
 import React, { useCallback, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 import Paper from '@material-ui/core/Paper'
 import { Avatar, Typography } from '@material-ui/core'
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles'
 
+import { AppState } from '../../../types'
+import useUser from '../../../hook/useUser'
 import useBooks from '../../../hook/useBooks'
 import MyDrawer from '../../pages/Drawer'
 
@@ -17,9 +20,8 @@ const useStyles = makeStyles((theme: Theme) =>
         margin: theme.spacing(3.5),
         width: theme.spacing(19),
         height: theme.spacing(21),
-        
       },
-      flexWrap:'wrap',
+      flexWrap: 'wrap',
     },
     large: {
       width: theme.spacing(16),
@@ -27,14 +29,15 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     spaceTop: {
       marginTop: 200,
-      backgroundColor:'green'
-     
-    }
+      backgroundColor: 'green',
+    },
   })
 )
 
 const Dashboards = () => {
   const classes = useStyles()
+  const [id, username] = useUser()
+  const dispatch = useDispatch()
   const [keyword, setKeyword] = useState('')
   const books = useBooks(keyword)
   const handleSearchChange = useCallback(
@@ -50,9 +53,14 @@ const Dashboards = () => {
         <div className={classes.spaceTop}>
           <Paper elevation={3} key={b.id}>
             <Typography key={b.id}>{b.category}</Typography>
-            <Avatar key={b.id} alt="Remy Sharp" src={b.image} className={classes.large} />
+            <Avatar
+              key={b.id}
+              alt="Remy Sharp"
+              src={b.image}
+              className={classes.large}
+            />
           </Paper>
-          <Typography key={b.id}>{(b.description).slice(0,75)}</Typography>
+          <Typography key={b.id}>{b.description.slice(0, 75)}</Typography>
         </div>
       ))}
     </div>

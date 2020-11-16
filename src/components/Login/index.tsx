@@ -72,19 +72,21 @@ const Login = () => {
         </div>
         <div className="row">
           <div className="col-sm-4">
-          <Button type="submit" variant="outlined">
-            Singin
-          </Button>
+            <Button type="submit" variant="outlined">
+              Singin
+            </Button>
           </div>
           <div className="col-sm-4">
-          <Button variant="outlined">
-            <Link to="/signup">Signup</Link>
-          </Button>
+            <Button variant="outlined">
+              <Link to="/signup">Signup</Link>
+            </Button>
           </div>
           <div className="col-sm-4">
-          <Button type="submit" variant="outlined">
-            <a href = 'http://localhost:3001/api/v1/auth/google' ><img src='./images/google.png' alt='googleimage' /></a>
-          </Button>
+            <Button type="submit" variant="outlined">
+              <a href="http://localhost:3001/api/v1/auth/google">
+                <img src="./images/google.png" alt="googleimage" />
+              </a>
+            </Button>
           </div>
         </div>
       </form>

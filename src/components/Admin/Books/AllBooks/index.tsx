@@ -6,7 +6,7 @@ import bookRemove from '../../../../redux/actions/BookActions/removeBookAction'
 import UpdateBook from '../UpdateBook'
 
 const CompleteTransactionInfo = () => {
-  const [keyword] = useState('')
+  const [keyword, setKeyword] = useState('')
   const books = useBooks(keyword)
   const dispatch = useDispatch()
   return (
@@ -23,18 +23,37 @@ const CompleteTransactionInfo = () => {
         </tr>
       </thead>
       <tbody>
-        {books.map(book => 
-          <tr key = {book.id}>
+        {books.map((book) => (
+          <tr key={book.id}>
             <th>{book.title}</th>
-            <td><img style={{height:`4rem`}} src={book.image ? book.image : './images/romeo.jpg'} alt={`${book.isbn}`}/></td>
+            <td>
+              <img
+                style={{ height: `4rem` }}
+                src={book.image ? book.image : './images/romeo.jpg'}
+                alt={`${book.isbn}`}
+              />
+            </td>
             <td>{book.category}</td>
             <td>{book.publisher}</td>
             <td>{book.isbn}</td>
-            <td>{book.isAvailable ? `available: ${book.total} copies`: <UpdateBook id={book.id} />}</td>
-            <td>  {book.author.map(author =>`${author.firstName} ${author.lastName}`)}</td>
-            <td><button onClick={() => bookRemove(book, dispatch)}>Remove</button></td>
+            <td>
+              {book.isAvailable ? (
+                `available: ${book.total} copies`
+              ) : (
+                <UpdateBook id={book.id} />
+              )}
+            </td>
+            <td>
+              {' '}
+              {book.author.map(
+                (author) => `${author.firstName} ${author.lastName}`
+              )}
+            </td>
+            <td>
+              <button onClick={() => bookRemove(book, dispatch)}>Remove</button>
+            </td>
           </tr>
-        )}
+        ))}
       </tbody>
     </table>
   )

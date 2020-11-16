@@ -4,7 +4,9 @@ import MoodIcon from '@material-ui/icons/Mood'
 import MoodBadIcon from '@material-ui/icons/MoodBad'
 import { makeStyles } from '@material-ui/core/styles'
 import {
+  Button,
   CardActionArea,
+  CardActions,
   CardContent,
   CardMedia,
   Grid,
@@ -69,8 +71,7 @@ const DashboardImage = () => {
               </div>
             </CardActionArea>
             <Typography>
-              {book.total > 1 ? <MoodIcon /> : 'Out of stock! '}
-              {' '}
+              {book.total > 1 ? <MoodIcon /> : 'Out of stock! '}{' '}
               {book.total < 1 ? <MoodBadIcon /> : `${book.total} Available`}
             </Typography>
           </Grid>

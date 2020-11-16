@@ -1,4 +1,10 @@
-import {  BookRemoveActions, BookState, BookUpdateActions, BOOK_REMOVE, BOOK_UPDATE } from '../../../types'
+import {
+  BookRemoveActions,
+  BookState,
+  BookUpdateActions,
+  BOOK_REMOVE,
+  BOOK_UPDATE,
+} from '../../../types'
 
 const bookRemoveReducer = (
   state: BookState = { books: [] },
@@ -6,9 +12,12 @@ const bookRemoveReducer = (
 ): BookState => {
   switch (action.type) {
   case BOOK_REMOVE:
-    const remainingBooks = state.books.filter((value) => value.id !== action.payload.book.id)
+    const remainingBooks = state.books.filter(
+      (value) => value.id !== action.payload.book.id
+    )
     return {
-     ...state, books: remainingBooks
+      ...state,
+      books: remainingBooks,
     }
   default:
     return state

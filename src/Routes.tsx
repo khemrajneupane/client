@@ -17,16 +17,16 @@ import { AppState } from './types'
 const Routes = () => {
   const [email, setEmail] = useState('')
   const [isAdmin, setIsAdmin] = useState(false)
-  const  users = useSelector((state: AppState) => state.user.users)
-  const loggedUserInfo = users.find(userEmail => userEmail.email === email)
-useEffect(()=>{
-  const loggedUserJSON = window.localStorage.getItem("loggedUser");
-  if (loggedUserJSON && loggedUserInfo) {
-    const aUser = JSON.parse(loggedUserJSON);
-    setEmail(aUser.userInfo.email)
-    setIsAdmin(loggedUserInfo.isAdmin)
-  }
-},[])
+  const users = useSelector((state: AppState) => state.user.users)
+  const loggedUserInfo = users.find((userEmail) => userEmail.email === email)
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem('loggedUser')
+    if (loggedUserJSON && loggedUserInfo) {
+      const aUser = JSON.parse(loggedUserJSON)
+      setEmail(aUser.userInfo.email)
+      setIsAdmin(loggedUserInfo.isAdmin)
+    }
+  }, [loggedUserInfo])
 
   return (
     <Switch>
@@ -34,13 +34,12 @@ useEffect(()=>{
       <Route exact path="/" component={Home} />
       <Route exact path="/dashboards" component={Dashboard} />
       <Route exact path="/dashboard" component={Dashboards} />
-      <Route exact path="/admin" component={AdminTable} /> 
+      <Route exact path="/admin" component={AdminTable} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/authoremail" component={OneAuthor} />
       <Route exact path="/profile/:id" component={Profile} />
-     
-      
-  </Switch>)
+    </Switch>
+  )
 }
 
 export default Routes

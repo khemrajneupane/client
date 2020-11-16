@@ -9,18 +9,16 @@ const useBooks = (keyword: string) => {
   const [books, setBooks] = useState<Books[]>([])
   const myBooks = useSelector((state: AppState) => state.bookAll.books)
   const authors = useSelector((state: AppState) => state.author.authors)
-   const dispatch = useDispatch()
+  const dispatch = useDispatch()
   useEffect(() => {
     const loadData = async () => {
       try {
         dispatch(bookList(dispatch))
         dispatch(userList(dispatch))
         dispatch(authorList(dispatch))
-       
       } catch (error) {
         console.log(error.name)
       }
-      
     }
     loadData()
   }, [dispatch])
