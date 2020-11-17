@@ -1,5 +1,4 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
 import clsx from 'clsx'
 import { useDispatch, useSelector } from 'react-redux'
 import Button from '@material-ui/core/Button'
@@ -9,7 +8,6 @@ import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
 import MuiDialogTitle from '@material-ui/core/DialogTitle'
 import MuiDialogContent from '@material-ui/core/DialogContent'
-import MuiDialogActions from '@material-ui/core/DialogActions'
 import {
   FilledInput,
   FormControl,
@@ -25,9 +23,8 @@ import {
 } from '@material-ui/core/styles'
 
 import useForm from '../../../../hook/useForm'
-import authorAdd from '../../../../redux/actions/AuthorAction/addAuthorAction'
 import authorUpdate from '../../../../redux/actions/AuthorAction/updateAuthorAction'
-import { AppState, AuthorId } from '../../../../types'
+import { AppState } from '../../../../types'
 
 const styles = (theme: Theme) =>
   createStyles({

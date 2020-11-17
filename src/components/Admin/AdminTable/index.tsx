@@ -6,12 +6,10 @@ import UserListTable from '../../Users/UserList'
 
 import './AdminTable.css'
 import CompleteTransactionInfo from '../Books/AllBooks'
-import useBooks from '../../../hook/useBooks'
 import MyDrawer from '../../pages/Drawer'
 
 const AdminTable = () => {
   const [keyword, setKeyword] = useState('')
-  const books = useBooks(keyword)
   const handleSearchChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>): void => {
       setKeyword(e.target.value)

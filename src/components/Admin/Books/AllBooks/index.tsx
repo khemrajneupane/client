@@ -6,7 +6,7 @@ import bookRemove from '../../../../redux/actions/BookActions/removeBookAction'
 import UpdateBook from '../UpdateBook'
 
 const CompleteTransactionInfo = () => {
-  const [keyword, setKeyword] = useState('')
+  const [keyword] = useState('')
   const books = useBooks(keyword)
   const dispatch = useDispatch()
   return (

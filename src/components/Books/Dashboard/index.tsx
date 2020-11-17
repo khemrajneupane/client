@@ -4,9 +4,7 @@ import MoodIcon from '@material-ui/icons/Mood'
 import MoodBadIcon from '@material-ui/icons/MoodBad'
 import { makeStyles } from '@material-ui/core/styles'
 import {
-  Button,
   CardActionArea,
-  CardActions,
   CardContent,
   CardMedia,
   Grid,

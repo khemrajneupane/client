@@ -1,18 +1,12 @@
 import React from 'react'
-import List from '@material-ui/core/List'
-import Rating from '@material-ui/lab/Rating'
 import Avatar from '@material-ui/core/Avatar'
 import { red } from '@material-ui/core/colors'
-import Divider from '@material-ui/core/Divider'
-import ListItem from '@material-ui/core/ListItem'
 import Typography from '@material-ui/core/Typography'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
-import ListItemText from '@material-ui/core/ListItemText'
-import ListItemAvatar from '@material-ui/core/ListItemAvatar'
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles'
 
 import './OneAuthor.css'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { AppState } from '../../../../types'
 import { useSelector } from 'react-redux'
 import {
@@ -54,11 +48,6 @@ const useStyle = makeStyles({
     height: 140,
   },
 })
-const makeInitials = (firstName: any, lastName: any) => {
-  const joinNames = `${firstName} ${lastName}`
-  const matcher = joinNames.match(/\b(\w)/g)?.join('')
-  return matcher
-}
 interface Params {
   authoremail: string
 }
