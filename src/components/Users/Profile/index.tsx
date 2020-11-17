@@ -13,19 +13,15 @@ import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp'
-import HomeIcon from '@material-ui/icons/Home'
 
 import { useSelector } from 'react-redux'
 import { AppState } from '../../../types'
 import useUser from '../../../hook/useUser'
 import LoanedBook from '../LoanedBooks'
+import UpdateUser from '../UserCreate'
+import MyDrawer from '../../pages/Drawer'
 
 import './Profile.css'
-import { Avatar } from '@material-ui/core'
-import { Link } from 'react-router-dom'
-import UpdateUser from '../UserCreate'
-import useBooks from '../../../hook/useBooks'
-import MyDrawer from '../../pages/Drawer'
 
 const useRowStyles = makeStyles({
   root: {
@@ -118,15 +114,15 @@ const Row = (props: { row: ReturnType<typeof createData> }) => {
 
 const Profile = () => {
   const [keyword, setKeyword] = useState('')
-  const books = useBooks(keyword)
+
   const handleSearchChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>): void => {
       setKeyword(e.target.value)
     },
     []
   )
-  const classes = useRowStyles()
-  const [id, username] = useUser()
+
+  const [id] = useUser()
   const users = useSelector((state: AppState) => state.user.users)
   const userById = users.filter((user) => user.id === id)
   return (

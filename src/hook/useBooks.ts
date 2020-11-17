@@ -4,11 +4,9 @@ import { AppState, Books } from '../types'
 import bookList from '../redux/actions/BookActions/bookGetAllAction'
 import userList from '../redux/actions/UserActions/userGetAllAction'
 import authorList from '../redux/actions/AuthorAction/authorGetAllAction'
-import loanList from '../redux/actions/LoanAction/loanFetchAllAction'
 const useBooks = (keyword: string) => {
   const [books, setBooks] = useState<Books[]>([])
   const myBooks = useSelector((state: AppState) => state.bookAll.books)
-  const authors = useSelector((state: AppState) => state.author.authors)
   const dispatch = useDispatch()
   useEffect(() => {
     const loadData = async () => {

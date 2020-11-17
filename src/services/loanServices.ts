@@ -1,8 +1,9 @@
 import axios from 'axios'
 
-import { BoK, BookId, Loan, LoanId, UserId, UsR } from '../types'
+import { Loan, LoanId } from '../types'
 import { API_URL_LOANS } from '../constants/CONSTANTS'
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 let token: any = null
 
 const setToken = (newToken: any) => {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 import clsx from 'clsx'
 import { useDispatch, useSelector } from 'react-redux'
@@ -19,7 +19,6 @@ import {
 } from '@material-ui/core/styles'
 import { AppState } from '../../../../types'
 import useForm from '../../../../hook/useForm'
-import useUser from '../../../../hook/useUser'
 import loanAdd from '../../../../redux/actions/LoanAction/takeLoanAction'
 
 const styles = (theme: Theme) =>
@@ -118,7 +117,6 @@ const CreateLoan = ({ book }: any) => {
   const authors = useSelector((state: AppState) => state.bookAll.books)
   const bookInfo = authors.find((author) => author.id === book)
   const classes = useStyles()
-  const [id, username, checkAdmin] = useUser()
   const handleSubmit = (event: any) => {
     event.preventDefault()
     const { book } = value

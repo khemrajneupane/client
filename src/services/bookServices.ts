@@ -1,8 +1,9 @@
 import axios from 'axios'
 
-import { AuthorId, Books, BookId } from '../types'
+import { AuthorId, Books } from '../types'
 import { API_URL_BOOKS } from '../constants/CONSTANTS'
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 let token: any = null
 
 const setToken = (newToken: any) => {

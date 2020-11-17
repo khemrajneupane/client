@@ -1,9 +1,7 @@
 import { Dispatch } from 'react'
-import axios from 'axios'
 
 import { Loan, LoanAddActions, LOAN_ADD } from '../../../types'
 import loanServices from '../../../services/loanServices'
-import bookList from '../BookActions/bookGetAllAction'
 import loanList from './loanFetchAllAction'
 import userList from '../UserActions/userGetAllAction'
 //Book Add

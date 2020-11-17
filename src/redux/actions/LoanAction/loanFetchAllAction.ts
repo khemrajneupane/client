@@ -1,6 +1,5 @@
 import { Dispatch } from 'react'
-import { BookActions, Books, BOOKS_LIST, Loan, LoanFetchActions, LOAN_FETCH } from '../../../types'
-import bookService from '../../../services/bookServices'
+import { Loan, LoanFetchActions, LOAN_FETCH } from '../../../types'
 import loanServices from '../../../services/loanServices'
 function fetchLoans(loans: Loan[]): LoanFetchActions {
   return {
@@ -11,10 +10,10 @@ function fetchLoans(loans: Loan[]): LoanFetchActions {
   }
 }
 const loanList = async (dispatch: Dispatch<any>) => {
-  try{
+  try {
     const loans = await loanServices.getAll()
     dispatch(fetchLoans(loans))
-  }catch(error){
+  } catch (error) {
     console.log(error)
   }
 }

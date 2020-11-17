@@ -34,8 +34,6 @@ const HtmlTooltip = withStyles((theme) => ({
 }))(Tooltip)
 
 const BookCard = () => {
-  const randomPrice = Math.floor(Math.random() * (25 - 5) + 5)
-
   const classes = useStyles()
   const dispatch = useDispatch()
 

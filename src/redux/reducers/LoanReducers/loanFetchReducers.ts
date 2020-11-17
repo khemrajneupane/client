@@ -1,4 +1,4 @@
-import { BookState, BookActions, BOOKS_LIST, LoanState, LoanAddActions, LoanFetchActions, LOAN_FETCH } from '../../../types'
+import { LoanState, LoanFetchActions, LOAN_FETCH } from '../../../types'
 const loanFetchReducer = (
   state: LoanState = { loans: [] },
   action: LoanFetchActions

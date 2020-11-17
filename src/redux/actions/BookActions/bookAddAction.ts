@@ -1,6 +1,4 @@
 import { Dispatch } from 'react'
-import axios from 'axios'
-
 import { BookAddActions, Books, BOOKS_ADD } from '../../../types'
 import bookServices from '../../../services/bookServices'
 import bookList from './bookGetAllAction'

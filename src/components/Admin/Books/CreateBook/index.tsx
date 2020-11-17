@@ -111,13 +111,6 @@ const DialogContent = withStyles((theme: Theme) => ({
   },
 }))(MuiDialogContent)
 
-const DialogActions = withStyles((theme: Theme) => ({
-  root: {
-    margin: 0,
-    padding: theme.spacing(1),
-  },
-}))(MuiDialogActions)
-
 const CreateBook = () => {
   const [open, setOpen] = React.useState(false)
   const handleClickOpen = () => {

@@ -3,6 +3,7 @@ import axios from 'axios'
 import { AuthorId, Authors } from '../../src/types'
 import { API_URL_AUTHORS } from '../constants/CONSTANTS'
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 let token: any = null
 
 const setToken = (newToken: any) => {

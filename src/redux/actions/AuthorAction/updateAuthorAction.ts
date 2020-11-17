@@ -1,5 +1,4 @@
 import { Dispatch } from 'react'
-import axios from 'axios'
 
 import authorServices from '../../../services/authorServices'
 import {

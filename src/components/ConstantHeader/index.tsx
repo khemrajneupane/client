@@ -1,14 +1,10 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-
-import { Button } from '@material-ui/core'
-
-import { AppState, SearchType, Users } from '../../types'
+import { useDispatch } from 'react-redux'
 import { logOut } from '../../redux/actions/LoginAction/logOutAction'
 
 import './NavBar.css'
-import { useState } from 'react'
+
 import useUser from '../../hook/useUser'
 
 const ConstantHeader = () => {

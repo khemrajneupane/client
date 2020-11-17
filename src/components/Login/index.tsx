@@ -2,12 +2,8 @@ import { Button } from '@material-ui/core'
 import React, { useCallback, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
-import useBooks from '../../hook/useBooks'
-
 import useForm from '../../hook/useForm'
 import { logIn } from '../../redux/actions/LoginAction/loginAction'
-import userList from '../../redux/actions/UserActions/userGetAllAction'
-import ConstantHeader from '../ConstantHeader'
 import MyDrawer from '../pages/Drawer'
 
 const Login = () => {
@@ -20,7 +16,6 @@ const Login = () => {
   const { value, handleInputChange, setValue } = useForm(initialState)
   const dispatch = useDispatch()
   const [keyword, setKeyword] = useState('')
-  const books = useBooks(keyword)
   const handleSearchChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>): void => {
       setKeyword(e.target.value)

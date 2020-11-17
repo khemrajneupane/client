@@ -1,5 +1,4 @@
 import { Dispatch } from 'react'
-import axios from 'axios'
 import { UserAddActions, Users, USER_ADD } from '../../../types'
 import userServices from '../../../services/userServices'
 import userList from './userGetAllAction'

@@ -1,7 +1,6 @@
 import { Dispatch } from 'react'
-import axios from 'axios'
 
-import { AuthorId, BookId, BookRemoveActions, Books, BOOK_REMOVE } from '../../../types'
+import { BookRemoveActions, Books, BOOK_REMOVE } from '../../../types'
 import bookServices from '../../../services/bookServices'
 import bookList from './bookGetAllAction'
 
@@ -10,24 +9,23 @@ function removeBook(book: Books): BookRemoveActions {
   return {
     type: BOOK_REMOVE,
     payload: {
-      book
+      book,
     },
   }
 }
 
 const bookRemove = async (book: Books, dispatch: Dispatch<any>) => {
   try {
-    const loggedUserJSON = window.localStorage.getItem("loggedUser")
+    const loggedUserJSON = window.localStorage.getItem('loggedUser')
     let user = null
-    if(loggedUserJSON){
+    if (loggedUserJSON) {
       user = JSON.parse(loggedUserJSON)
     }
-    const updateThisBook = await bookServices.remove( book.id, user.token)  
+    const updateThisBook = await bookServices.remove(book.id, user.token)
     dispatch(removeBook(updateThisBook))
     bookList(dispatch)
-    
   } catch (error) {
-    if(error.name === 'TypeError'){
+    if (error.name === 'TypeError') {
       alert('You must be logged in to perform this action')
     }
   }

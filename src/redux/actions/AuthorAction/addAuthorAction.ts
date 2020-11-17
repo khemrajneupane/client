@@ -1,13 +1,7 @@
 import { Dispatch } from 'react'
-import axios from 'axios'
 
 import authorServices from '../../../services/authorServices'
-import {
-  AuthorAddActions,
-  Authors,
-  AUTHOR_ADD,
-  USER_LOGOUT,
-} from '../../../types'
+import { AuthorAddActions, Authors, AUTHOR_ADD } from '../../../types'
 import authorList from './authorGetAllAction'
 
 //Author Add
