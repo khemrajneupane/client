@@ -33,6 +33,12 @@ const Login = () => {
       <div className="row">
         <MyDrawer keyword={keyword} handleSearchChange={handleSearchChange} />
       </div>
+      <div className="col-sm-4">
+        <span style={{ backgroundColor: 'grey' }}>
+          This is a demo app ! To test the app as admin: (Email:
+          khem.neupane@integrify.io) Username: khemraj Password: khemraj
+        </span>
+      </div>
       <form onSubmit={handleLogin}>
         <div className="form-group mt-5">
           <label htmlFor="exampleInputEmail1">Username </label>
@@ -74,13 +80,6 @@ const Login = () => {
           <div className="col-sm-4">
             <Button variant="outlined">
               <Link to="/signup">Signup</Link>
-            </Button>
-          </div>
-          <div className="col-sm-4">
-            <Button type="submit" variant="outlined">
-              <a href="http://localhost:3001/api/v1/auth/google">
-                <img src="./images/google.png" alt="googleimage" />
-              </a>
             </Button>
           </div>
         </div>

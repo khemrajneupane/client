@@ -45,7 +45,7 @@ const Basket = () => {
           no items <RemoveShoppingCartIcon fontSize="large" color="error" />
         </Typography>
       ) : (
-        <Link to="/countryList">
+        <Link to="/item">
           {
             <IconButton aria-label="cart">
               <StyledBadge

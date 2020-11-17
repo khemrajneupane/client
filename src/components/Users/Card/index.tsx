@@ -1,10 +1,8 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { withStyles, makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
-import CardActionArea from '@material-ui/core/CardActionArea'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
@@ -42,20 +40,19 @@ const BookCard = () => {
     <Card className={classes.root}>
       {myBasket.map((myBasket) => (
         <Card key={myBasket.id}>
-          <CardActionArea>
-            <CardMedia
-              component="img"
-              alt={myBasket.title}
-              height="100"
-              image={myBasket.image}
-              title={myBasket.title}
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="h2">
-                <Link to={`/book/${myBasket.title}`}>{myBasket.title}</Link>
-              </Typography>
-            </CardContent>
-          </CardActionArea>
+          <CardMedia
+            component="img"
+            alt={myBasket.title}
+            height="100"
+            image={myBasket.image}
+            title={myBasket.title}
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              {myBasket.title}
+            </Typography>
+          </CardContent>
+
           <CardActions>
             <HtmlTooltip
               title={
