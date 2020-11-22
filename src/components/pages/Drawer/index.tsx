@@ -37,6 +37,7 @@ import useUser from '../../../hook/useUser'
 import { AppState, SearchType } from '../../../types'
 import { logOut } from '../../../redux/actions/LoginAction/logOutAction'
 
+import './Drawer.css'
 const drawerWidth = 240
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -199,7 +200,7 @@ const MyDrawer = ({ keyword, handleSearchChange }: SearchType) => {
   ]
 
   return (
-    <div className={classes.root}>
+    <div className="topNav">
       <CssBaseline />
       <AppBar
         position="fixed"
@@ -209,90 +210,99 @@ const MyDrawer = ({ keyword, handleSearchChange }: SearchType) => {
       >
         <Toolbar>
           <Divider />
-          <List>
-            <img
-              src="https://lh3.googleusercontent.com/a-/AOh14GgKhpFq7OQCJZb_bI6daeL5h2sHTjs70_P9x6HD=s96-c"
-              alt="profileimg"
-            />
+          <div className="mr-5">
+            <List>
+              <img
+                src="https://lh3.googleusercontent.com/a-/AOh14GgKhpFq7OQCJZb_bI6daeL5h2sHTjs70_P9x6HD=s96-c"
+                alt="profileimg"
+              />
 
-            <IconButton>
-              <select
-                className="form-control"
-                onBlur={(e) => handleThemeChange(e.target.value)}
-              >
-                <option value="black">Theme Color</option>
-                {colors.map((item) => (
-                  <option value={item.name} key={item.name}>
-                    {item.name.toUpperCase()}
-                  </option>
-                ))}
-              </select>
-            </IconButton>
-            <Tooltip title="home" arrow placement="top-end">
               <IconButton>
-                <Link to="/">
-                  {' '}
-                  <HomeIcon />
-                </Link>
+                <select
+                  className="form-control"
+                  onBlur={(e) => handleThemeChange(e.target.value)}
+                >
+                  <option value="black">Theme Color</option>
+                  {colors.map((item) => (
+                    <option value={item.name} key={item.name}>
+                      {item.name.toUpperCase()}
+                    </option>
+                  ))}
+                </select>
               </IconButton>
-            </Tooltip>
-            <Tooltip title="dashboard" arrow>
+
+              <Tooltip title="home" arrow placement="top-end">
+                <IconButton>
+                  <Link to="/">
+                    {' '}
+                    <HomeIcon />
+                  </Link>
+                </IconButton>
+              </Tooltip>
+
+              <Tooltip title="dashboard" arrow>
+                <IconButton>
+                  <Link to="/dashboard">
+                    <DashboardIcon />
+                  </Link>
+                </IconButton>
+              </Tooltip>
               <IconButton>
-                <Link to="/dashboard">
-                  <DashboardIcon />
-                </Link>
-              </IconButton>
-            </Tooltip>
-            <IconButton>
-              {checkAdmin?.isAdmin && (
-                <Link to="/admin">{` ${username.toUpperCase()} Admin`}</Link>
-              )}
-            </IconButton>
-            <Tooltip title="profile" arrow>
-              <IconButton>
-                {id && (
-                  <ListItem>
-                    {!checkAdmin?.isAdmin && (
-                      <>
-                        <Link
-                          to={`/profile/:${id}`}
-                        >{` ${username.toUpperCase()}! Loans: ${
-                            loansTotal.length
-                          }`}</Link>
-                      </>
-                    )}
-                  </ListItem>
+                {checkAdmin?.isAdmin && (
+                  <Link to="/admin">{` ${username.toUpperCase()} Admin`}</Link>
                 )}
               </IconButton>
-            </Tooltip>
-          </List>
-          {id && (
-            <div className={myClasses.search}>
-              <div className={myClasses.searchIcon}>
-                <SearchIcon />
+              <Tooltip title="profile" arrow>
+                <IconButton>
+                  {id && (
+                    <ListItem>
+                      {!checkAdmin?.isAdmin && (
+                        <>
+                          <Link
+                            to={`/profile/:${id}`}
+                          >{` ${username.toUpperCase()}! Loans: ${
+                              loansTotal.length
+                            }`}</Link>
+                        </>
+                      )}
+                    </ListItem>
+                  )}
+                </IconButton>
+              </Tooltip>
+            </List>
+          </div>
+          <div className="mr-5">
+            {id && (
+              <div className={myClasses.search}>
+                <div className={myClasses.searchIcon}>
+                  <SearchIcon />
+                </div>
+                <InputBase
+                  placeholder="Search…"
+                  classes={{
+                    root: myClasses.inputRoot,
+                    input: myClasses.inputInput,
+                  }}
+                  inputProps={{ 'aria-label': 'search' }}
+                  value={keyword}
+                  onChange={handleSearchChange}
+                  aria-label="Search"
+                />
               </div>
-              <InputBase
-                placeholder="Search…"
-                classes={{
-                  root: myClasses.inputRoot,
-                  input: myClasses.inputInput,
-                }}
-                inputProps={{ 'aria-label': 'search' }}
-                value={keyword}
-                onChange={handleSearchChange}
-                aria-label="Search"
-              />
-            </div>
-          )}
-          <Basket />
-
-          <IconButton onClick={() => logOut(dispatch)}>
-            {!id ? (
-              <Link to="/login">login</Link>
-            ) : (
-              <Link to="/login">logout</Link>
             )}
-          </IconButton>
+          </div>
+          <div className="basket">
+            <Basket />
+          </div>
+          <div className="mr-5">
+            <IconButton onClick={() => logOut(dispatch)}>
+              {!id ? (
+                <Link to="/login">login</Link>
+              ) : (
+                <Link to="/login">logout</Link>
+              )}
+            </IconButton>
+          </div>
 
           <IconButton
             color="inherit"
@@ -305,6 +315,7 @@ const MyDrawer = ({ keyword, handleSearchChange }: SearchType) => {
           </IconButton>
         </Toolbar>
       </AppBar>
+
       <main
         className={clsx(classes.content, {
           [classes.contentShift]: open,
@@ -312,6 +323,7 @@ const MyDrawer = ({ keyword, handleSearchChange }: SearchType) => {
       >
         <div className={classes.drawerHeader} />
       </main>
+
       <Drawer
         className={classes.drawer}
         variant="persistent"

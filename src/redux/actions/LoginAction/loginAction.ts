@@ -30,9 +30,9 @@ export const logIn = async (user: Users, dispatch: Dispatch<any>) => {
     const cookies = document.cookie
     const loggedCookies = cookies.slice(18, cookies.length)
     aUser.token = loggedCookies
-    dispatch(login(aUser))
-    bookList(dispatch)
-    userList(dispatch)
+    //dispatch(login(aUser))
+    //bookList(dispatch)
+    //userList(dispatch)
   } catch (error) {
     console.log(error)
   }

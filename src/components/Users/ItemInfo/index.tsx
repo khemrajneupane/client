@@ -37,54 +37,60 @@ const HtmlTooltip = withStyles((theme) => ({
 const ItemInfo = () => {
   const classes = useStyles()
   const dispatch = useDispatch()
-
   const myBasket = useSelector((state: AppState) => state.myBasket.myBasket)
   return (
     <div className="container">
       <div className="row mt-3">
-        <Card className={classes.root}>
-          {myBasket.map((myBasket) => (
-            <Card key={myBasket.id}>
-              <CardActionArea>
-                <CardMedia
-                  component="img"
-                  alt={myBasket.title}
-                  height="100"
-                  image={myBasket.image}
-                  title={myBasket.title}
-                />
-              </CardActionArea>
-              <CardActions>
-                <HtmlTooltip
-                  title={
-                    <React.Fragment>
-                      <Typography color="inherit">{`Do you want to delete ${myBasket.title}?`}</Typography>
-                    </React.Fragment>
-                  }
-                >
-                  <Button
-                    size="large"
-                    color="primary"
-                    onClick={() => dispatch(deleteBookFromBasket(myBasket))}
+        {myBasket.length > 0 ? (
+          <Card className={classes.root}>
+            {myBasket.map((myBasket) => (
+              <Card key={myBasket.id}>
+                <CardActionArea>
+                  <CardMedia
+                    component="img"
+                    alt={myBasket.title}
+                    height="100"
+                    image={myBasket.image}
+                    title={myBasket.title}
+                  />
+                </CardActionArea>
+                <CardActions>
+                  <HtmlTooltip
+                    title={
+                      <React.Fragment>
+                        <Typography color="inherit">{`Do you want to delete ${myBasket.title}?`}</Typography>
+                      </React.Fragment>
+                    }
                   >
-                    <DeleteOutlineSharpIcon fontSize="large" />
-                  </Button>
-                </HtmlTooltip>
-                <Typography>
-                  <CreateLoan book={myBasket.id} />
-                </Typography>
-              </CardActions>
-              <div
-                style={{
-                  padding: `1rem`,
-                  height: `1.5px`,
-                  backgroundColor: `white`,
-                  marginBottom: `2rem`,
-                }}
-              />
-            </Card>
-          ))}
-        </Card>
+                    <Button
+                      size="large"
+                      color="primary"
+                      onClick={() => dispatch(deleteBookFromBasket(myBasket))}
+                    >
+                      <DeleteOutlineSharpIcon fontSize="large" />
+                    </Button>
+                  </HtmlTooltip>
+                  <Typography>
+                    <CreateLoan book={myBasket.id} />
+                  </Typography>
+                </CardActions>
+                <div
+                  style={{
+                    padding: `1rem`,
+                    height: `1.5px`,
+                    backgroundColor: `white`,
+                    marginBottom: `2rem`,
+                  }}
+                />
+              </Card>
+            ))}
+          </Card>
+        ) : (
+          <span style={{ margin: '0 auto', backgroundColor: 'brown' }}>
+            Your cart is empty
+          </span>
+        )}
+
         <div>
           <Link to="/">
             {' '}

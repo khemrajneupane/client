@@ -3,7 +3,9 @@ import React, { useCallback, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 import useForm from '../../hook/useForm'
-import { logIn } from '../../redux/actions/LoginAction/loginAction'
+import bookList from '../../redux/actions/BookActions/bookGetAllAction'
+import userList from '../../redux/actions/UserActions/userGetAllAction'
+import loginServices from '../../services/loginServices'
 import MyDrawer from '../pages/Drawer'
 
 const Login = () => {
@@ -12,22 +14,54 @@ const Login = () => {
     email: '',
     password: '',
   }
+  const [errMsg, setErrMsg] = useState('')
   const history = useHistory()
   const { value, handleInputChange, setValue } = useForm(initialState)
-  const dispatch = useDispatch()
   const [keyword, setKeyword] = useState('')
+  const dispatch = useDispatch()
+  bookList(dispatch)
+  userList(dispatch)
   const handleSearchChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>): void => {
       setKeyword(e.target.value)
     },
     []
   )
+
   const handleLogin = async (event: { preventDefault: () => void }) => {
     event.preventDefault()
-    logIn(value, dispatch)
-    setValue(initialState)
-    history.push('/')
+
+    try {
+      const aUser = await loginServices.login(value)
+      setValue(initialState)
+      const loggedToken = window.localStorage.setItem(
+        'loggedUser',
+        JSON.stringify(aUser)
+      )
+      window.localStorage.setItem('userId', JSON.stringify(aUser.userInfo.id))
+      window.localStorage.setItem(
+        'username',
+        JSON.stringify(aUser.userInfo.username)
+      )
+      if (aUser) {
+        aUser.token = loggedToken
+        history.push('/')
+      }
+    } catch (error) {
+      if (error.name === 'TypeError') {
+        setErrMsg('Please provide the field vlaues')
+        setTimeout(() => {
+          setErrMsg('')
+        }, 5000)
+      } else if (error.name === 'Error') {
+        setErrMsg(`Incorrect fields. Please try login again!`)
+        setTimeout(() => {
+          setErrMsg('')
+        }, 5000)
+      }
+    }
   }
+
   return (
     <div className="container">
       <div className="row">
@@ -36,11 +70,20 @@ const Login = () => {
       <div className="col-sm-4">
         <span style={{ backgroundColor: 'grey' }}>
           This is a demo app ! To test the app as admin: (Email:
-          khem.neupane@integrify.io) Username: khemraj Password: khemraj
+          khem.neupane@integrify.io) Username: khemraj , Password: khemraj
         </span>
       </div>
       <form onSubmit={handleLogin}>
         <div className="form-group mt-5">
+          <div
+            style={{
+              backgroundColor: '#ffcccb',
+              fontSize: '2rem',
+              textAlign: 'center',
+            }}
+          >
+            {errMsg ? <span>{errMsg}</span> : null}
+          </div>
           <label htmlFor="exampleInputEmail1">Username </label>
           <input
             className="form-control"
@@ -74,7 +117,7 @@ const Login = () => {
         <div className="row">
           <div className="col-sm-4">
             <Button type="submit" variant="outlined">
-              Singin
+              Login
             </Button>
           </div>
           <div className="col-sm-4">

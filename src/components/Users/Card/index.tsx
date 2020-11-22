@@ -19,6 +19,7 @@ const useStyles = makeStyles({
   root: {
     minWidth: 50,
     backgroundColor: 'rgba(0,0,0,.2)',
+    overflow: 'scroll',
   },
 })
 const HtmlTooltip = withStyles((theme) => ({

@@ -121,8 +121,6 @@ const CreateBook = () => {
   }
 
   const allAuthors = useSelector((state: AppState) => state.author.authors)
-
-  console.log('allAuthorsallAuthors ', allAuthors)
   const initialState = {
     author: '',
     category: '',

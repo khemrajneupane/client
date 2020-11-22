@@ -32,7 +32,7 @@ const loanAdd = async (book: any, dispatch: Dispatch<any>) => {
       alert('You must be logged in to perform this action')
     }
 
-    console.log(error.name)
+    console.log(error)
   }
 }
 

@@ -15,7 +15,7 @@ const useBooks = (keyword: string) => {
         dispatch(userList(dispatch))
         dispatch(authorList(dispatch))
       } catch (error) {
-        console.log(error.name)
+        //console.log(error)
       }
     }
     loadData()

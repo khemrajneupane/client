@@ -138,11 +138,10 @@ const CreateLoan = ({ book }: any) => {
         open={open}
       >
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Add{' '}
           <sup>
-            <strong>{bookInfo?.title}</strong>
-          </sup>{' '}
-          to basket
+            Take loan:
+            <strong> {bookInfo?.title}</strong>?
+          </sup>
         </DialogTitle>
         <DialogContent dividers>
           <form onSubmit={handleSubmit}>
@@ -163,8 +162,9 @@ const CreateLoan = ({ book }: any) => {
               className={clsx(classes.rootButton)}
               variant="contained"
               type="submit"
+              onClick={handleClose}
             >
-              Loan
+              TakeLoan
             </Button>
           </form>
         </DialogContent>

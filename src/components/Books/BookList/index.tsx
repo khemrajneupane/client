@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme: Theme) =>
       background: 'linear-gradient(45deg, #01caf9 30%, #FF8E53 90%)',
       borderRadius: 3,
       border: 0,
-      color: 'white',
+      color: 'brown',
       height: 48,
       padding: '0 30px',
       boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
@@ -151,6 +151,7 @@ const BookList = ({ book }: BookListType) => {
                     </div>
                     <div className="mr-2">
                       <Button
+                        className={clsx(classes.rootButton)}
                         onClick={() => dispatch(addBookToBasket(book, id))}
                       >
                         Add to basket

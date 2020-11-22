@@ -12,6 +12,7 @@ const HomeView = () => {
     },
     []
   )
+
   return (
     <div>
       <MyDrawer keyword={keyword} handleSearchChange={handleSearchChange} />
