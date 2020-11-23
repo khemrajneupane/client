@@ -7,10 +7,7 @@ import { createStyles, Theme, makeStyles } from '@material-ui/core/styles'
 import { Button, Card, CardContent, CardHeader } from '@material-ui/core'
 import HomeIcon from '@material-ui/icons/Home'
 
-import useUser from '../../../hook/useUser'
-import { AppState, BookListType, Books } from '../../../types'
-import UpdateBook from '../../Admin/Books/UpdateBook'
-import UpdateAuthor from '../../Admin/Authors/UpdateAuthor'
+import { AppState } from '../../../types'
 import { addBookToBasket } from '../../../redux/actions/BasketAction/basketAction'
 import { useState } from 'react'
 import useBooks from '../../../hook/useBooks'
@@ -70,13 +67,11 @@ interface Params {
 }
 const BookInfo = () => {
   const classe = useStyle()
-  const classes = useStyles()
   const { id } = useParams<Params>()
   const books = useSelector((state: AppState) => state.bookAll.books)
   const book = books.find((book) => book.id === id)
   const dispatch = useDispatch()
   const [keyword, setKeyword] = useState('')
-  const bks = useBooks(keyword)
   const handleSearchChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>): void => {
       setKeyword(e.target.value)
