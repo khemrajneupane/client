@@ -1,11 +1,12 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
 import clsx from 'clsx'
 import Typography from '@material-ui/core/Typography'
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles'
 import { Button, Card, CardContent, CardHeader } from '@material-ui/core'
-import { Link } from 'react-router-dom'
+
 import useUser from '../../../hook/useUser'
 import { BookListType } from '../../../types'
 import UpdateBook from '../../Admin/Books/UpdateBook'
@@ -33,13 +34,13 @@ const useStyles = makeStyles((theme: Theme) =>
     },
 
     rootButton: {
-      background: 'linear-gradient(45deg, #01caf9 30%, #FF8E53 90%)',
+      background: 'linear-gradient(45deg, #01caf1 40%, #FF8E53 90%)',
       borderRadius: 3,
       border: 0,
       color: 'brown',
       height: 48,
       padding: '0 30px',
-      boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+      boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .7)',
     },
   })
 )
@@ -47,7 +48,7 @@ const useStyle = makeStyles({
   root: {
     minWidth: 400,
     paddingRight: 2,
-    background: 'linear-gradient(45deg, #01caf9 30%, #FF8E53 90%)',
+    background: 'linear-gradient(45deg, green 30%, #FF8E53 90%)',
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .9)',
   },
   media: {
@@ -137,17 +138,21 @@ const BookList = ({ book }: BookListType) => {
                         className={clsx(classes.rootButton)}
                         color="inherit"
                       >
-                        <Link to={`/bookinfo/${book.id}`}>Bookinfo</Link>
+                        <Link to={`/bookinfo/${book.id}`}>BookInfo</Link>
                       </Button>
                     </div>
                     <div className="mr-2">
-                      <Button
-                        type="submit"
-                        className={clsx(classes.rootButton)}
-                        color="inherit"
-                      >
-                        AuthorInfo
-                      </Button>
+                      {book.author.map((author) => (
+                        <Button
+                          type="submit"
+                          className={clsx(classes.rootButton)}
+                          color="inherit"
+                        >
+                          <Link to={`/thisAuthor/${author.id}`}>
+                            AuthorInfo
+                          </Link>
+                        </Button>
+                      ))}
                     </div>
                     <div className="mr-2">
                       <Button

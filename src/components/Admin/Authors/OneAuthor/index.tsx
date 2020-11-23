@@ -1,101 +1,73 @@
 import React from 'react'
-import Avatar from '@material-ui/core/Avatar'
-import { red } from '@material-ui/core/colors'
-import Typography from '@material-ui/core/Typography'
-import MoreVertIcon from '@material-ui/icons/MoreVert'
-import { createStyles, Theme, makeStyles } from '@material-ui/core/styles'
-
-import './OneAuthor.css'
-import { useParams } from 'react-router-dom'
-import { AppState } from '../../../../types'
 import { useSelector } from 'react-redux'
+import { Link, useParams } from 'react-router-dom'
+
 import {
   Card,
   CardActionArea,
   CardContent,
   CardHeader,
-  CardMedia,
-  IconButton,
 } from '@material-ui/core'
+import Avatar from '@material-ui/core/Avatar'
+import HomeIcon from '@material-ui/icons/Home'
+import { red } from '@material-ui/core/colors'
+import Typography from '@material-ui/core/Typography'
+import { createStyles, Theme, makeStyles } from '@material-ui/core/styles'
+
+import { AppState } from '../../../../types'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    inline: {
-      height: '1rem',
-      lineHeight: '1rem',
-      overflow: 'hidden',
-    },
-    image: {
-      padding: '1px',
-    },
-    rating: {
-      display: 'flex',
-      flexDirection: 'column',
-      '& > * + *': {
-        marginTop: theme.spacing(1),
-      },
-    },
     avatar: {
+      width: '100%',
+      height: '100%',
       backgroundColor: red[500],
     },
   })
 )
 const useStyle = makeStyles({
   root: {
-    maxWidth: 345,
-  },
-  media: {
-    height: 140,
+    maxWidth: 390,
+    margin: '0 auto',
   },
 })
 interface Params {
-  authoremail: string
+  id: string
 }
 const OneAuthor = () => {
   const classes = useStyles()
   const classe = useStyle()
-  const { authoremail } = useParams<Params>()
-
+  const { id } = useParams<Params>()
   const authors = useSelector((state: AppState) => state.author.authors)
-  const oneAuthor = authors.find((author) => author.email === authoremail)
+  const oneAuthor = authors.find((author) => author.id === id)
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-4">
-          <Card className={classe.root}>
-            <CardHeader
-              avatar={
-                <Avatar aria-label="recipe" className={classes.avatar}>
-                  KR
-                </Avatar>
-              }
-              action={
-                <IconButton aria-label="settings">
-                  <MoreVertIcon />
-                </IconButton>
-              }
-              title="title"
-              subheader="subhead"
-            />
-
-            <CardActionArea>
-              <CardMedia
-                className={classe.media}
-                image="./images/romeo.jpg"
-                title="romeo and juliot"
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                  {oneAuthor?.firstName}
-                </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
-                  {oneAuthor?.lastName}
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-        </div>
-      </div>
+    <div className="myContainer">
+      <Card className={classe.root}>
+        <Link to="/">
+          {' '}
+          <HomeIcon fontSize="large" />
+        </Link>
+        <CardHeader
+          avatar={
+            <Avatar aria-label="recipe" className={classes.avatar}>
+              <img src="../images/romeo.jpg" alt="authorImage" />
+            </Avatar>
+          }
+        />
+        <CardActionArea>
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              {`Author: ${oneAuthor?.firstName} ${oneAuthor?.lastName}`}
+            </Typography>
+            <Typography gutterBottom variant="h5" component="h2">
+              {`Email: ${oneAuthor?.email}`}
+            </Typography>
+            <Typography gutterBottom variant="h5" component="h2">
+              {`Birth: ${oneAuthor?.dob?.slice(0, 10)}`}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+      </Card>
     </div>
   )
 }

@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
     margin: '0 auto',
   },
   rootButton: {
-    background: 'linear-gradient(45deg, #090872 30%, #FF8E53 90%)',
+    background: 'linear-gradient(45deg, #090872 50%, #FF8E53 90%)',
     borderRadius: 3,
     border: 0,
     color: 'white',

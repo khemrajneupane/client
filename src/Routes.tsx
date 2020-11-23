@@ -19,7 +19,7 @@ const Routes = () => {
       <Route exact path="/dashboard" component={Dashboard} />
       <Route exact path="/admin" component={AdminTable} />
       <Route exact path="/login" component={Login} />
-      <Route exact path="/authoremail" component={OneAuthor} />
+      <Route exact path="/thisAuthor/:id" component={OneAuthor} />
       <Route exact path="/profile/:id" component={Profile} />
       <Route exact path="/item" component={ItemInfo} />
       <Route exact path="/bookinfo/:id" component={BookInfo} />

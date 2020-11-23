@@ -1,47 +1,18 @@
-import React, { useCallback } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React from 'react'
 import { useParams, Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+
 import clsx from 'clsx'
-import Typography from '@material-ui/core/Typography'
-import { createStyles, Theme, makeStyles } from '@material-ui/core/styles'
-import { Button, Card, CardContent, CardHeader } from '@material-ui/core'
 import HomeIcon from '@material-ui/icons/Home'
+import Typography from '@material-ui/core/Typography'
+import { makeStyles } from '@material-ui/core/styles'
+import { Button, Card, CardContent, CardHeader } from '@material-ui/core'
 
 import { AppState } from '../../../types'
 import { addBookToBasket } from '../../../redux/actions/BasketAction/basketAction'
-import { useState } from 'react'
-import useBooks from '../../../hook/useBooks'
-import MyDrawer from '../../pages/Drawer'
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    inline: {
-      height: '1rem',
-      lineHeight: '1rem',
-      overflow: 'hidden',
-    },
-    image: {
-      padding: '1px',
-    },
-    rating: {
-      display: 'flex',
-      flexDirection: 'column',
-      '& > * + *': {
-        marginTop: theme.spacing(1),
-      },
+import './BookInfo.css'
 
-      rootButton: {
-        background: 'linear-gradient(45deg, #01caf9 30%, #FF8E53 90%)',
-        borderRadius: 3,
-        border: 0,
-        color: 'brown',
-        height: 48,
-        padding: '0 30px',
-        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-      },
-    },
-  })
-)
 const useStyle = makeStyles({
   root: {
     minWidth: 400,
@@ -71,19 +42,11 @@ const BookInfo = () => {
   const books = useSelector((state: AppState) => state.bookAll.books)
   const book = books.find((book) => book.id === id)
   const dispatch = useDispatch()
-  const [keyword, setKeyword] = useState('')
-  const handleSearchChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>): void => {
-      setKeyword(e.target.value)
-    },
-    []
-  )
   return (
-    <div className="container">
-      <MyDrawer keyword={keyword} handleSearchChange={handleSearchChange} />
+    <div className="container myContainer">
       {book ? (
         <div
-          className="col-12 mb-5"
+          className="col-12"
           key={`${book.id} ${book.rating} ${book.publishedYear}`}
         >
           <Card className={clsx(classe.root)}>
@@ -93,7 +56,7 @@ const BookInfo = () => {
                 <HomeIcon fontSize="large" />
               </Link>
             </div>
-            <div className="container mt-4">
+            <div className="container">
               <div className="row">
                 <div className="col-sm-7">
                   <img src={book.image} alt={book.title} />
@@ -121,7 +84,7 @@ const BookInfo = () => {
             <CardHeader
               action={
                 <div className="row">
-                  <div className="mr-2">
+                  <div>
                     <Button
                       className={clsx(classe.rootButton)}
                       onClick={() => dispatch(addBookToBasket(book, id))}

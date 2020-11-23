@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,YAAY,CAAA;EACR,MAAM,EAAE,UAAU;CACrB",
+    "sources": [
+        "BookInfo.scss"
+    ],
+    "names": [],
+    "file": "BookInfo.css"
+}
