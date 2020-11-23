@@ -5,7 +5,7 @@ import clsx from 'clsx'
 import Typography from '@material-ui/core/Typography'
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles'
 import { Button, Card, CardContent, CardHeader } from '@material-ui/core'
-
+import { Link } from 'react-router-dom'
 import useUser from '../../../hook/useUser'
 import { BookListType } from '../../../types'
 import UpdateBook from '../../Admin/Books/UpdateBook'
@@ -137,7 +137,7 @@ const BookList = ({ book }: BookListType) => {
                         className={clsx(classes.rootButton)}
                         color="inherit"
                       >
-                        BookInfo
+                        <Link to={`/bookinfo/${book.id}`}>Bookinfo</Link>
                       </Button>
                     </div>
                     <div className="mr-2">

@@ -9,6 +9,7 @@ import Login from './components/Login'
 import SignUpForm from './components/SignUpForm'
 import Profile from './components/Users/Profile'
 import ItemInfo from './components/Users/ItemInfo'
+import BookInfo from './components/Books/BookInfo'
 
 const Routes = () => {
   return (
@@ -21,6 +22,7 @@ const Routes = () => {
       <Route exact path="/authoremail" component={OneAuthor} />
       <Route exact path="/profile/:id" component={Profile} />
       <Route exact path="/item" component={ItemInfo} />
+      <Route exact path="/bookinfo/:id" component={BookInfo} />
     </Switch>
   )
 }

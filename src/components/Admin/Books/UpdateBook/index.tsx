@@ -269,6 +269,7 @@ const UpdateBook = ({ id }: any) => {
               className={clsx(classes.rootButton, classes.labelButton)}
               color="inherit"
               type="submit"
+              onClick={handleClose}
             >
               UpdateBook
             </Button>

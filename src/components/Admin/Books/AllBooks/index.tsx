@@ -1,11 +1,33 @@
+import { Button } from '@material-ui/core'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
+import clsx from 'clsx'
+import { makeStyles } from '@material-ui/core/styles'
 
 import useBooks from '../../../../hook/useBooks'
 import bookRemove from '../../../../redux/actions/BookActions/removeBookAction'
 import UpdateBook from '../UpdateBook'
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
 
+  textField: {
+    width: 200,
+  },
+  rootButton: {
+    background: 'linear-gradient(45deg, red 70%,  pink 10%)',
+    borderRadius: 3,
+    border: 0,
+    color: 'white',
+    height: 48,
+    padding: '0 30px',
+    boxShadow: '0 3px 5px 2px rgba(209, 209, 204, .8)',
+  },
+}))
 const CompleteTransactionInfo = () => {
+  const classes = useStyles()
   const [keyword] = useState('')
   const books = useBooks(keyword)
   const dispatch = useDispatch()
@@ -50,7 +72,12 @@ const CompleteTransactionInfo = () => {
               )}
             </td>
             <td>
-              <button onClick={() => bookRemove(book, dispatch)}>Remove</button>
+              <Button
+                className={clsx(classes.rootButton, classes.textField)}
+                onClick={() => bookRemove(book, dispatch)}
+              >
+                Remove
+              </Button>
             </td>
           </tr>
         ))}

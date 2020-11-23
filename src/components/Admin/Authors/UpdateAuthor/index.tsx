@@ -217,6 +217,7 @@ const UpdateAuthor = ({ id }: any) => {
                 type="submit"
                 variant="contained"
                 color="primary"
+                onClick={handleClose}
               >
                 {`Update ${authorFields?.firstName}`}
               </Button>
