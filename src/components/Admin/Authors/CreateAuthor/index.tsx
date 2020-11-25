@@ -222,6 +222,7 @@ const CreateAuthor = () => {
                 type="submit"
                 variant="contained"
                 color="primary"
+                onClick={handleClose}
               >
                 CREATE AUTHOR
               </Button>

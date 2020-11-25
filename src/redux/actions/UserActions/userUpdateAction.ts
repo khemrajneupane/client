@@ -1,6 +1,12 @@
 import { Dispatch } from 'react'
 
-import { UserId, Users, USERS_UPDATE, UserUpdateActions } from '../../../types'
+import {
+  PasswordPayload,
+  UserId,
+  Users,
+  USERS_UPDATE,
+  UserUpdateActions,
+} from '../../../types'
 import bookList from '../BookActions/bookGetAllAction'
 import userServices from '../../../services/userServices'
 import userList from '../UserActions/userGetAllAction'
@@ -15,6 +21,7 @@ function updateUser(users: Users): UserUpdateActions {
   }
 }
 
+/*
 const userUpdate = async (
   users: Users,
   id: UserId,
@@ -37,5 +44,33 @@ const userUpdate = async (
     }
   }
 }
+*/
+const userPasswordUpdate = async (
+  passwordPayload: PasswordPayload,
+  id: Users,
+  dispatch: Dispatch<any>
+) => {
+  try {
+    const loggedUserJSON = window.localStorage.getItem('loggedUser')
+    let user = null
+    if (loggedUserJSON) {
+      user = JSON.parse(loggedUserJSON)
+    }
+    const updateThisUser = await userServices.update(
+      id,
+      passwordPayload,
+      user.token
+    )
 
-export default userUpdate
+    dispatch(updateUser(updateThisUser))
+    userList(dispatch)
+    bookList(dispatch)
+  } catch (error) {
+    if (error.name === 'TypeError') {
+      alert('You must be logged in to perform this action')
+    }
+  }
+}
+
+//export default userUpdate
+export default userPasswordUpdate

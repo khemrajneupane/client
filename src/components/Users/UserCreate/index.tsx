@@ -23,9 +23,11 @@ import {
   WithStyles,
 } from '@material-ui/core/styles'
 
-import { AppState } from '../../../types'
+import { AppState, Users } from '../../../types'
 import useForm from '../../../hook/useForm'
 import userUpdate from '../../../redux/actions/UserActions/userUpdateAction'
+import userPasswordUpdate from '../../../redux/actions/UserActions/userUpdateAction'
+import useUser from '../../../hook/useUser'
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -118,10 +120,8 @@ const UpdateUser = ({ id }: any) => {
     setOpen(false)
   }
   const initialState = {
-    username: userFields?.username,
-    email: userFields?.email,
-    password: '',
-    rePassword: '',
+    oldPassword: '',
+    newPassword: '',
   }
   const { value, handleInputChange, setValue } = useForm(initialState)
   const dispatch = useDispatch()
@@ -129,11 +129,9 @@ const UpdateUser = ({ id }: any) => {
 
   const handleSubmit = (event: any) => {
     event.preventDefault()
-    if (value.rePassword === value.password) {
-      userUpdate(value, id, dispatch)
-    } else {
-      alert('passwords do not match!')
-    }
+
+    userPasswordUpdate(value, id, dispatch)
+
     console.log(value)
     setValue(initialState)
   }
@@ -161,61 +159,32 @@ const UpdateUser = ({ id }: any) => {
               className={clsx(classes.margin, classes.textField)}
               variant="filled"
             >
-              <InputLabel>Username</InputLabel>
-              <FilledInput
-                type="text"
-                name="username"
-                value={value.username}
-                onChange={handleInputChange}
-              />
-              <FormHelperText id="filled-weight-helper-text">
-                <small> type your username</small>
-              </FormHelperText>
-            </FormControl>
-
-            <FormControl
-              className={clsx(classes.margin, classes.textField)}
-              variant="filled"
-            >
-              <InputLabel>email</InputLabel>
-              <FilledInput
-                id="filled-adornment-name"
-                type="email"
-                name="email"
-                value={value.email}
-                onChange={handleInputChange}
-              />
-            </FormControl>
-            <FormControl
-              className={clsx(classes.margin, classes.textField)}
-              variant="filled"
-            >
-              <InputLabel>password</InputLabel>
+              <InputLabel>Old Password</InputLabel>
               <FilledInput
                 id="filled-adornment-name"
                 type="text"
-                name="password"
-                value={value.password}
+                name="oldPassword"
+                value={value.oldPassword}
                 onChange={handleInputChange}
               />
               <FormHelperText id="filled-weight-helper-text">
-                <small>type your email id</small>
+                <small>type your previous password</small>
               </FormHelperText>
             </FormControl>
             <FormControl
               className={clsx(classes.margin, classes.textField)}
               variant="filled"
             >
-              <InputLabel>re-password</InputLabel>
+              <InputLabel>New Password</InputLabel>
               <FilledInput
                 id="filled-adornment-name"
                 type="text"
-                name="rePassword"
-                value={value.rePassword}
+                name="newPassword"
+                value={value.newPassword}
                 onChange={handleInputChange}
               />
               <FormHelperText id="filled-weight-helper-text">
-                <small>re-type your password</small>
+                <small>re-type your new password</small>
               </FormHelperText>
             </FormControl>
 
@@ -226,8 +195,9 @@ const UpdateUser = ({ id }: any) => {
                 type="submit"
                 variant="contained"
                 color="primary"
+                onClick={handleClose}
               >
-                {`Update ${userFields?.username}`}
+                {`Update ${userFields?.username}'s password`}
               </Button>
             </FormControl>
           </form>

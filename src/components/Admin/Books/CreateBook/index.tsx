@@ -304,6 +304,7 @@ const CreateBook = () => {
                 variant="contained"
                 color="primary"
                 type="submit"
+                onClick={handleClose}
               >
                 CreateBook
               </Button>

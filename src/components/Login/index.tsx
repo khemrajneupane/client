@@ -5,6 +5,7 @@ import { Link, useHistory } from 'react-router-dom'
 import useForm from '../../hook/useForm'
 import bookList from '../../redux/actions/BookActions/bookGetAllAction'
 import userList from '../../redux/actions/UserActions/userGetAllAction'
+import googleLoginServices from '../../services/googleLoginServices'
 import loginServices from '../../services/loginServices'
 import MyDrawer from '../pages/Drawer'
 
@@ -34,6 +35,37 @@ const Login = () => {
     try {
       const aUser = await loginServices.login(value)
       setValue(initialState)
+      const loggedToken = window.localStorage.setItem(
+        'loggedUser',
+        JSON.stringify(aUser)
+      )
+      window.localStorage.setItem('userId', JSON.stringify(aUser.userInfo.id))
+      window.localStorage.setItem(
+        'username',
+        JSON.stringify(aUser.userInfo.username)
+      )
+      if (aUser) {
+        aUser.token = loggedToken
+        history.push('/')
+      }
+    } catch (error) {
+      if (error.name === 'TypeError') {
+        setErrMsg('Please provide the field vlaues')
+        setTimeout(() => {
+          setErrMsg('')
+        }, 5000)
+      } else if (error.name === 'Error') {
+        setErrMsg(`Incorrect fields. Please try login again!`)
+        setTimeout(() => {
+          setErrMsg('')
+        }, 5000)
+      }
+    }
+  }
+  const handleGoogleLogin = async () => {
+    try {
+      const aUser = await googleLoginServices.login()
+
       const loggedToken = window.localStorage.setItem(
         'loggedUser',
         JSON.stringify(aUser)
@@ -123,6 +155,11 @@ const Login = () => {
           <div className="col-sm-4">
             <Button variant="outlined">
               <Link to="/signup">Signup</Link>
+            </Button>
+          </div>
+          <div className="col-sm-4">
+            <Button variant="outlined" onClick={handleGoogleLogin}>
+              googleLogin
             </Button>
           </div>
         </div>

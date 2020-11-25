@@ -127,7 +127,6 @@ export type AppState = {
   loan: LoanState
   loggedUser: LoggerState
   myBasket: BasketState
-  
 }
 // Types for hooks and table elements
 
@@ -198,8 +197,7 @@ export type Books = {
   total: number
   rating: number
   image: string
-  author: Authors[] //author: AuthorId 
-
+  author: Authors[] //author: AuthorId
 }
 
 // Book fetch Actions
@@ -253,7 +251,7 @@ export type SignUpFormType = {
   password: string
 }
 //Book List Types
-export type BookListType ={
+export type BookListType = {
   book: Books[]
 }
 
@@ -273,8 +271,13 @@ export type Users = {
   id: string //UserId
   joinedDate: string
   image: string
-  
 }
+//Password Type
+export type PasswordPayload = {
+  oldPassword: string
+  newPassword: string
+}
+
 // User add actions
 export type UserAddActions = {
   type: typeof USER_ADD
@@ -361,9 +364,9 @@ export type AuthorState = {
 /**************** Loan Type */
 //Loan Type
 export type Loan = {
- user: Users[]//string[] //UserId
- book: Books[]//string[] //BookId
- id: any
+  user: Users[] //string[] //UserId
+  book: Books[] //string[] //BookId
+  id: any
 }
 //Usr type
 export type UsR = {
@@ -378,7 +381,7 @@ export type BoK = {
 export type LoanAddActions = {
   type: typeof LOAN_ADD
   payload: {
-        loans: Loan
+    loans: Loan
   }
 }
 //Loan Remove Action
@@ -386,7 +389,7 @@ export type LoanAddActions = {
 export type LoanRemoveActions = {
   type: typeof LOAN_REMOVE
   payload: {
-        loan: Loan
+    loan: Loan
   }
 }
 //Loan Fetch Action
@@ -394,7 +397,7 @@ export type LoanRemoveActions = {
 export type LoanFetchActions = {
   type: typeof LOAN_FETCH
   payload: {
-        loans: Loan[]
+    loans: Loan[]
   }
 }
 
