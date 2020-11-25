@@ -23,11 +23,9 @@ import {
   WithStyles,
 } from '@material-ui/core/styles'
 
-import { AppState, Users } from '../../../types'
+import { AppState } from '../../../types'
 import useForm from '../../../hook/useForm'
-import userUpdate from '../../../redux/actions/UserActions/userUpdateAction'
 import userPasswordUpdate from '../../../redux/actions/UserActions/userUpdateAction'
-import useUser from '../../../hook/useUser'
 
 const styles = (theme: Theme) =>
   createStyles({

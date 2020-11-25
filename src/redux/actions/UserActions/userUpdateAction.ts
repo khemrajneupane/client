@@ -2,7 +2,6 @@ import { Dispatch } from 'react'
 
 import {
   PasswordPayload,
-  UserId,
   Users,
   USERS_UPDATE,
   UserUpdateActions,
