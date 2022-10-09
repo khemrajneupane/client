@@ -50,7 +50,7 @@ const OneAuthor = () => {
         <CardHeader
           avatar={
             <Avatar aria-label="recipe" className={classes.avatar}>
-              <img src="../images/romeo.jpg" alt="authorImage" />
+              <img src="romeo.jpg" alt="authorImage" />
             </Avatar>
           }
         />

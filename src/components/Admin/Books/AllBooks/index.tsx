@@ -52,7 +52,7 @@ const CompleteTransactionInfo = () => {
             <td>
               <img
                 style={{ height: `4rem` }}
-                src={book.image ? book.image : './images/romeo.jpg'}
+                src={book.image ? book.image : 'romeo.jpg'}
                 alt={`${book.isbn}`}
               />
             </td>
