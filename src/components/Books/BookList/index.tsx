@@ -96,7 +96,7 @@ const BookList = ({ book }: BookListType) => {
               <div className="container">
                 <div className="row">
                   <div className="col-sm-7">
-                    <img src={book.image} alt={book.title} />
+                    <img src="romeo.jpg" alt={book.title} />
                   </div>
                   <div className="col-sm-5">
                     <Typography>ISBN: {book.isbn}</Typography>
