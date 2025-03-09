@@ -63,7 +63,7 @@ const Login = () => {
   }
 
   return (
-    <div className="container">
+    <div className="container" style={{marginTop:'8rem'}}>
       <div className="row">
         <MyDrawer keyword={keyword} handleSearchChange={handleSearchChange} />
       </div>
@@ -78,7 +78,7 @@ const Login = () => {
           >
             {errMsg ? <span>{errMsg}</span> : null}
           </div>
-          <label htmlFor="exampleInputEmail1">Username </label>
+          <label htmlFor="exampleInputEmail1">Username:<strong>testaaja</strong> </label>
           <input
             className="form-control"
             id="exampleInputEmail1"
@@ -88,7 +88,7 @@ const Login = () => {
             onChange={handleInputChange}
           />
           <br />
-          <label htmlFor="exampleInputEmail2">Email </label>
+          <label htmlFor="exampleInputEmail2">Email: <strong>testaaja@gmail.com</strong> </label>
           <input
             className="form-control"
             id="exampleInputEmail2"
@@ -98,7 +98,7 @@ const Login = () => {
             onChange={handleInputChange}
           />
           <br />
-          <label htmlFor="exampleInputEmail3">Password</label>
+          <label htmlFor="exampleInputEmail3">Password: <strong>testaaja</strong></label>
           <input
             className="form-control"
             id="exampleInputEmail3"
